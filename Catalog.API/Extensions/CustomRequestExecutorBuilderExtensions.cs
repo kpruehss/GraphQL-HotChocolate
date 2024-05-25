@@ -10,6 +10,7 @@ public static class CustomRequestExecutorBuilderExtensions
     {
         builder
             .AddProjections()
+            .AddSorting()
             .AddFiltering(c =>
             {
                 c.AddDefaults()
