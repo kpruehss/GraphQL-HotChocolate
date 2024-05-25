@@ -1,5 +1,5 @@
+using eShop.Catalog.Extensions;
 using HotChocolate.Data.Filters;
-using HotChocolate.Types.Pagination;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,20 +15,7 @@ builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>()
     .AddType<ProductFilterInputType>()
-    .SetPagingOptions(new PagingOptions
-    {
-        // Global Pagination Defaults
-        DefaultPageSize = 2,
-        MaxPageSize = 5,
-        AllowBackwardPagination = false,
-        RequirePagingBoundaries = true,
-    })
-    .AddProjections()
-    .AddFiltering(c =>
-    {
-        c.AddDefaults()
-            .BindRuntimeType<string, CustomStringOperationFilterInputType>();
-    });
+    .AddGraphQLConventions();
 
 var app = builder.Build();
 
