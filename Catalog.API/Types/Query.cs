@@ -20,11 +20,10 @@ public class Query
 
     #region Brands
 
-    [UsePaging(DefaultPageSize = 1, MaxPageSize = 10)] // Override Global Pagination Settings
+    [UsePaging(DefaultPageSize = 10, MaxPageSize = 20)] // Override Global Pagination Settings
     [UseProjection]
     [UseFiltering]
-    public IQueryable<Brand> GetBrands
-        (CatalogContext context) => context.Brands;
+    public IQueryable<Brand> GetBrands(CatalogContext context) => context.Brands;
 
     [UseFirstOrDefault]
     [UseProjection]
@@ -35,9 +34,10 @@ public class Query
 
     #region Products
 
-    [UsePaging(DefaultPageSize = 1, MaxPageSize = 10)] // Override Global Pagination Settings
+    [UsePaging(DefaultPageSize = 10, MaxPageSize = 20)] // Override Global Pagination Settings
     [UseProjection]
     [UseFiltering]
+    [UseSorting]
     public IQueryable<Product> GetProducts(CatalogContext context)
         => context.Products;
 

@@ -16,6 +16,9 @@ public static class CustomRequestExecutorBuilderExtensions
                     .BindRuntimeType<string, CustomStringOperationFilterInputType>();
             });
 
+        #region GLOBAL Pagination Defaults
+
+        // Append this to the builder middleware above
         // .SetPagingOptions(new PagingOptions
         // {
         //     // Global Pagination Defaults
@@ -24,6 +27,8 @@ public static class CustomRequestExecutorBuilderExtensions
         //     AllowBackwardPagination = false,
         //     RequirePagingBoundaries = true,
         // });
+
+        #endregion
 
         return builder;
     }
