@@ -1,6 +1,4 @@
 using eShop.Catalog.Extensions;
-using eShop.Catalog.Types.Filtering;
-using eShop.Catalog.Types.Sorting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,9 +12,7 @@ builder.Services
 
 builder.Services
     .AddGraphQLServer()
-    .AddQueryType<Query>()
-    .AddType<ProductFilterInputType>()
-    .AddType<ProductSortInputType>()
+    .AddCatalogTypes()
     .AddGraphQLConventions();
 
 var app = builder.Build();
