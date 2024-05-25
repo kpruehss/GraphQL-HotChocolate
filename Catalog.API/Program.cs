@@ -1,16 +1,19 @@
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .AddDbContext<CatalogContext>(
-        o => o.UseNpgsql(builder.Configuration.GetConnectionString("CatalogDB")));
+        o => o.UseNpgsql(
+            builder.Configuration.GetConnectionString("CatalogDB")));
 
 builder.Services
     .AddMigration<CatalogContext, CatalogContextSeed>();
 
 builder.Services
-    .AddGraphQLServer();
+    .AddGraphQLServer()
+    .AddQueryType<Query>()
+    .AddProjections();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 app.MapGraphQL();
 
