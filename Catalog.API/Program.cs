@@ -1,4 +1,6 @@
-WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+using HotChocolate.Types.Pagination;
+
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .AddDbContext<CatalogContext>(
@@ -11,9 +13,17 @@ builder.Services
 builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>()
-    .AddProjections();
+    .AddProjections()
+    .SetPagingOptions(new PagingOptions
+    {
+        // Global Pagination Defaults
+        DefaultPageSize = 2,
+        MaxPageSize = 5,
+        AllowBackwardPagination = false,
+        RequirePagingBoundaries = true,
+    });
 
-WebApplication app = builder.Build();
+var app = builder.Build();
 
 app.MapGraphQL();
 
