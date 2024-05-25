@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using HotChocolate.Types.Descriptors;
 
 namespace eShop.Catalog.Types;
@@ -20,6 +21,9 @@ public static class UseToUpperObjectFieldDescriptorExtension
 
 public class UseToUpperAttribute : ObjectFieldDescriptorAttribute
 {
+
+    public UseToUpperAttribute([CallerLineNumber] int order = default)
+        => Order = order;
 
     protected override void OnConfigure
     (
