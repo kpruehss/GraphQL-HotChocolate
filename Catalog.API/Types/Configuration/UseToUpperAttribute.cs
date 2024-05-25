@@ -2,22 +2,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using HotChocolate.Types.Descriptors;
 
-namespace eShop.Catalog.Types;
-
-public static class UseToUpperObjectFieldDescriptorExtension
-{
-    public static IObjectFieldDescriptor UseToUpper
-        (this IObjectFieldDescriptor descriptor)
-    {
-        return descriptor.Use(next => async context =>
-        {
-            await next(context);
-
-            if (context.Result is string s)
-                context.Result = s.ToUpperInvariant();
-        });
-    }
-}
+namespace eShop.Catalog.Types.Configuration;
 
 public class UseToUpperAttribute : ObjectFieldDescriptorAttribute
 {

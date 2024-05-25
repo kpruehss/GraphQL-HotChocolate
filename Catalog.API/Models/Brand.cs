@@ -1,5 +1,6 @@
 ﻿// ReSharper disable CollectionNeverUpdated.Global
 using System.ComponentModel.DataAnnotations;
+using eShop.Catalog.Types.Configuration;
 
 namespace eShop.Catalog.Models;
 
