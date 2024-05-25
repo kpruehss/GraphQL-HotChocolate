@@ -41,6 +41,15 @@ public class CustomStringOperationFilterInputType : StringOperationFilterInputTy
     protected override void Configure(IFilterInputTypeDescriptor descriptor)
     {
         descriptor.Operation(DefaultFilterOperations.Equals).Type<StringType>();
+        descriptor.Operation(DefaultFilterOperations.StartsWith).Type<StringType>();
+    }
+}
+
+public class SearchStringOperationFilterInputType : StringOperationFilterInputType
+{
+    protected override void Configure(IFilterInputTypeDescriptor descriptor)
+    {
+        descriptor.Operation(DefaultFilterOperations.Equals).Type<StringType>();
         descriptor.Operation(DefaultFilterOperations.Contains).Type<StringType>();
         descriptor.Operation(DefaultFilterOperations.In).Type<ListType<StringType>>();
         descriptor.Operation(DefaultFilterOperations.StartsWith).Type<StringType>();
