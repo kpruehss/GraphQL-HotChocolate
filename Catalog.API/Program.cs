@@ -14,6 +14,7 @@ builder.Services
 builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>()
+    .AddType<ProductFilterInputType>()
     .SetPagingOptions(new PagingOptions
     {
         // Global Pagination Defaults

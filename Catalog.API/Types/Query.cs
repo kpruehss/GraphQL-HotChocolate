@@ -1,3 +1,5 @@
+using HotChocolate.Data.Filters;
+
 namespace eShop.Catalog.Types;
 
 public class Query
@@ -48,4 +50,19 @@ public class Query
 
     #endregion
 
+}
+
+public class ProductFilterInputType : FilterInputType<Product>
+{
+    protected override void Configure(IFilterInputTypeDescriptor<Product> descriptor)
+    {
+        // Constrain which fields can be filtered by
+        descriptor.BindFieldsExplicitly();
+
+        descriptor.Field(f => f.Name);
+        descriptor.Field(f => f.Type);
+        descriptor.Field(f => f.Brand);
+        descriptor.Field(f => f.Price);
+        descriptor.Field(f => f.AvailableStock);
+    }
 }
