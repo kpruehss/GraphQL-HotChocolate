@@ -2,6 +2,7 @@ namespace eShop.Catalog.Types;
 
 public class Query
 {
+    [UsePaging]
     [UseProjection]
     public IQueryable<Product> GetProducts(CatalogContext context)
         => context.Products;
