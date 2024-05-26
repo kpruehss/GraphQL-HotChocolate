@@ -1,16 +1,14 @@
+using eShop.Catalog.Service;
+
 namespace eShop.Catalog.Types;
 
-[QueryType]
 public static class BrandQueries
 {
-    // [UsePaging(DefaultPageSize = 10, MaxPageSize = 20)] // Override Global Pagination Settings
-    [UsePaging] // Override Global Pagination Settings
-    [UseProjection]
-    [UseFiltering]
-    public static IQueryable<Brand> GetBrands(CatalogContext context) => context.Brands;
+    public static async Task<IReadOnlyList<Brand>> GetBrandsAsync(BrandService brandService, CancellationToken cancellationToken) =>
+        await brandService.GetBrandsAsync(cancellationToken);
 
-    [UseFirstOrDefault]
-    [UseProjection]
-    public static IQueryable<Brand?> GetBrandById(CatalogContext context, int id)
-        => context.Brands.Where(brand => brand.Id == id);
+    public static async Task<Brand?> GetBrandByIdAsync(int id,
+        BrandService brandService,
+        CancellationToken cancellationToken) =>
+        await brandService.GetBrandByIdAsync(id, cancellationToken);
 }
