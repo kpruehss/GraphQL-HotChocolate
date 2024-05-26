@@ -1,6 +1,5 @@
-namespace eShop.Catalog.Service;
+namespace eShop.Catalog.Services;
 
-[QueryType]
 public sealed class ProductService(CatalogContext context)
 {
     public async Task<IReadOnlyList<Product>> GetProductsAsync(CancellationToken cancellationToken = default) =>
