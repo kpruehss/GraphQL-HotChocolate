@@ -1,16 +1,12 @@
+using eShop.Catalog.Service;
+
 namespace eShop.Catalog.Types;
 
-[QueryType]
 public static class ProductTypeQueries
 {
-    [UsePaging]
-    [UseProjection]
-    [UseFiltering]
-    public static IQueryable<ProductType> GetProductTypes(CatalogContext context)
-        => context.ProductTypes;
+    public static async Task<IReadOnlyList<ProductType>> GetProductTypesAsync(ProductTypeService productTypeService, CancellationToken cancellationToken)
+        => await productTypeService.GetProductTypesAsync(cancellationToken);
 
-    [UseFirstOrDefault]
-    [UseProjection]
-    public static IQueryable<ProductType?> GetProductTypesById(CatalogContext context, int id)
-        => context.ProductTypes.Where(pt => pt.Id == id);
+    public static async Task<ProductType?> GetProductTypesByIdAsync(int id, ProductTypeService productTypeService, CancellationToken cancellationToken)
+        => await productTypeService.GetProductTypeByIdAsync(id, cancellationToken);
 }
