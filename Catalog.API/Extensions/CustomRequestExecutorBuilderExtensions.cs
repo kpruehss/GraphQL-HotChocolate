@@ -11,6 +11,7 @@ public static class CustomRequestExecutorBuilderExtensions
         builder
             .AddProjections()
             .AddSorting()
+            .AddPagingArguments()
             .AddFiltering(c =>
             {
                 c.AddDefaults()
