@@ -12,7 +12,9 @@ public static class ProductQueries
         PagingArguments pagingArguments,
         ProductService productService,
         CancellationToken cancellationToken = default)
-        => await productService.GetProductsAsync(pagingArguments, cancellationToken).ToConnectionAsync();
+        => await productService
+            .GetProductsAsync(pagingArguments, cancellationToken)
+            .ToConnectionAsync();
 
     public static async Task<Product?> GetProductByIdAsync(
         int id,
